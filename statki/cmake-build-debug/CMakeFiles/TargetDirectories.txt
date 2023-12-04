@@ -1,3 +1,3 @@
-/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/statki/cmake-build-debug/CMakeFiles/statki.dir
-/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/statki/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/statki/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algosy/statki/cmake-build-debug/CMakeFiles/statki.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algosy/statki/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algosy/statki/cmake-build-debug/CMakeFiles/rebuild_cache.dir

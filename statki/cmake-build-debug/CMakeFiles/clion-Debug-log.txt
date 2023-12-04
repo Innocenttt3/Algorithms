@@ -1,4 +1,4 @@
-"/Users/kamilgolawski/Applications/CLion Nova.app/Contents/bin/cmake/mac/aarch64/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/kamilgolawski/Applications/CLion Nova.app/Contents/bin/ninja/mac/aarch64/ninja" -G Ninja -S /Users/kamilgolawski/Nauka/Programowanie/Algorytmy/statki -B /Users/kamilgolawski/Nauka/Programowanie/Algorytmy/statki/cmake-build-debug
+"/Users/kamilgolawski/Applications/CLion Nova.app/Contents/bin/cmake/mac/aarch64/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/kamilgolawski/Applications/CLion Nova.app/Contents/bin/ninja/mac/aarch64/ninja" -G Ninja -S /Users/kamilgolawski/Nauka/Programowanie/Algosy/statki -B /Users/kamilgolawski/Nauka/Programowanie/Algosy/statki/cmake-build-debug
 -- The C compiler identification is AppleClang 15.0.0.15000040
 -- The CXX compiler identification is AppleClang 15.0.0.15000040
 -- Detecting C compiler ABI info
@@ -11,6 +11,6 @@
 -- Check for working CXX compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
--- Configuring done (6.4s)
+-- Configuring done (3.7s)
 -- Generating done (0.0s)
--- Build files have been written to: /Users/kamilgolawski/Nauka/Programowanie/Algorytmy/statki/cmake-build-debug
+-- Build files have been written to: /Users/kamilgolawski/Nauka/Programowanie/Algosy/statki/cmake-build-debug

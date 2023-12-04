@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/statki/cmake-build-debug",
-		"source" : "/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/statki"
+		"build" : "/Users/kamilgolawski/Nauka/Programowanie/Algosy/statki/cmake-build-debug",
+		"source" : "/Users/kamilgolawski/Nauka/Programowanie/Algosy/statki"
 	},
 	"version" : 
 	{
