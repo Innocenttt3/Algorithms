@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/anteny/cmake-build-debug",
-		"source" : "/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/anteny"
+		"build" : "/Users/kamilgolawski/Nauka/Programowanie/Algosy/anteny/cmake-build-debug",
+		"source" : "/Users/kamilgolawski/Nauka/Programowanie/Algosy/anteny"
 	},
 	"version" : 
 	{

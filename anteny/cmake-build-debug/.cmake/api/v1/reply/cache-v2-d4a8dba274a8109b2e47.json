@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/anteny/cmake-build-debug"
+			"value" : "/Users/kamilgolawski/Nauka/Programowanie/Algosy/anteny/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -479,7 +479,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/anteny/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "/Users/kamilgolawski/Nauka/Programowanie/Algosy/anteny/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -539,7 +539,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/anteny"
+			"value" : "/Users/kamilgolawski/Nauka/Programowanie/Algosy/anteny"
 		},
 		{
 			"name" : "CMAKE_INSTALL_NAME_TOOL",
@@ -1127,7 +1127,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/anteny/cmake-build-debug"
+			"value" : "/Users/kamilgolawski/Nauka/Programowanie/Algosy/anteny/cmake-build-debug"
 		},
 		{
 			"name" : "anteny_IS_TOP_LEVEL",
@@ -1151,7 +1151,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/anteny"
+			"value" : "/Users/kamilgolawski/Nauka/Programowanie/Algosy/anteny"
 		}
 	],
 	"kind" : "cache",

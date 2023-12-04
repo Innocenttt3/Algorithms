@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = "/Users/kamilgolawski/Applications/CLion Nova.app/Contents/bin/cmake/mac/aarch64/bin/cmake" --regenerate-during-build -S/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/anteny -B/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/anteny/cmake-build-debug
+  command = "/Users/kamilgolawski/Applications/CLion Nova.app/Contents/bin/cmake/mac/aarch64/bin/cmake" --regenerate-during-build -S/Users/kamilgolawski/Nauka/Programowanie/Algosy/anteny -B/Users/kamilgolawski/Nauka/Programowanie/Algosy/anteny/cmake-build-debug
   description = Re-running CMake...
   generator = 1
 

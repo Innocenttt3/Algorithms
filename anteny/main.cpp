@@ -1,45 +1,64 @@
 #include <iostream>
 
 
-double P(int i, int j) {
-    double result = 30 - std::sqrt(std::pow(i - 5, 2) + std::pow(j - 5, 2));
-    return result;
-}
-
-std::pair<int, int>findPoint(int rows, int cols, int** arr, int maxCoorX, int maxCoorY) {
-    int maxValue = -1;
-    if(rows >= cols) {
-        int newRows = rows / 2;
-        int newMaxValue = maxValue;
-        for ( int i = 0; i < cols; i++) {
-            if (newMaxValue < arr[newRows][i]) {
-                newMaxValue = arr[newRows][i];
-                maxCoorX = newRows;
-                maxCoorY = i;
-            }
+std::pair<int, int> findSpot(int** arr, int coorX, int coorY, int startRow, int endRow, int clmns, int rowsAmount) {
+    int maxCoorX;
+    int maxCoorY;
+    int tmpMaxValue = 0;
+    int middleRow = (endRow - startRow) / 2;
+    if (endRow - startRow == 1) {
+        return {coorX, coorY};
+    }
+    for (int i = 0; i < clmns; i++) {
+        if (arr[middleRow][i] > tmpMaxValue) {
+            tmpMaxValue = arr[middleRow][i];
+            maxCoorX = middleRow;
+            maxCoorY = i;
         }
-        if (arr[maxCoorX + 1][maxCoorY] > arr[maxCoorX][maxCoorY]) {
-            findPoint(rows - maxCoorX + 1, cols, arr, maxCoorX, maxCoorY);
-        } else if (arr[maxCoorX - 1][maxCoorY] > arr[maxCoorX][maxCoorY]) {
-            findPoint(rows - maxCoorX - 1, cols, arr, maxCoorX, maxCoorY);
+    }
+    std::cout << tmpMaxValue << "<- maks wartosc z rzedu: " << middleRow << std::endl;
+    if (middleRow + 1 < rowsAmount && middleRow - 1 >= 0) {
+        if (arr[middleRow + 1][maxCoorY] >= tmpMaxValue) {
+            int newStartRows = middleRow + 1;
+            findSpot(arr, maxCoorX, maxCoorY, newStartRows, endRow, clmns, rowsAmount);
         }
-    } else if (rows < cols) {
-
-    } else if ( rows == 1 && cols == 1) {
-        return std::make_pair(maxCoorX, maxCoorY);
+        else if (arr[middleRow - 1][maxCoorY] >= tmpMaxValue) {
+            findSpot(arr, maxCoorX, maxCoorY, 0, middleRow, clmns, rowsAmount);
+        }
     }
 
 }
 
+void displayArray(int** arr, int rows, int cols) {
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            std::cout << arr[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
 int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+
     int i, j;
+    std::cin >> i >> j;
     int** dynamicArray = new int *[i];
     for (int y = 0; y < i; ++y) {
         dynamicArray[y] = new int[j];
     }
 
-    findPoint(i, j, dynamicArray);
+    for (int x = 0; x < i; ++x) {
+        for (int y = 0; y < j; ++y) {
+            dynamicArray[x][y] = x * j + y;
+        }
+    }
+    displayArray(dynamicArray, i, j);
 
+    std::pair<int, int> result = findSpot(dynamicArray, 0, 0, 0, i, j);
+    std::cout << result.first << " " << result.second;
 
     for (int x = 0; x < i; ++x) {
         delete[] dynamicArray[x];
