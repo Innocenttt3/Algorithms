@@ -1,0 +1,3 @@
+/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/aktorzy/cmake-build-debug/CMakeFiles/aktorzy.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/aktorzy/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/aktorzy/cmake-build-debug/CMakeFiles/rebuild_cache.dir

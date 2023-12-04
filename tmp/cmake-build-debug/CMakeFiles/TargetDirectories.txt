@@ -1,0 +1,3 @@
+/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/tmp/cmake-build-debug/CMakeFiles/tmp.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/tmp/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/tmp/cmake-build-debug/CMakeFiles/rebuild_cache.dir

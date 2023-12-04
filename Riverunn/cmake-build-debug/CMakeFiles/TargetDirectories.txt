@@ -1,0 +1,3 @@
+/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/Riverunn/cmake-build-debug/CMakeFiles/Riverunn.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/Riverunn/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/Riverunn/cmake-build-debug/CMakeFiles/rebuild_cache.dir

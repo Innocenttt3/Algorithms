@@ -1,0 +1,3 @@
+/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/malpki/cmake-build-debug/CMakeFiles/malpki.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/malpki/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algorytmy/malpki/cmake-build-debug/CMakeFiles/rebuild_cache.dir
