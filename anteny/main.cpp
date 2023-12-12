@@ -1,68 +1,69 @@
 #include <iostream>
 
+std::pair<int, int> findSpot(int** arr, int startRow, int endRow, int clmns) {
+    if (startRow == endRow) {
 
-std::pair<int, int> findSpot(int** arr, int coorX, int coorY, int startRow, int endRow, int clmns, int rowsAmount) {
-    int maxCoorX;
-    int maxCoorY;
-    int tmpMaxValue = 0;
-    int middleRow = (endRow - startRow) / 2;
-    if (endRow - startRow == 1) {
-        return {coorX, coorY};
+        int maxValue = -1;
+        int maxX = -1;
+        for (int i = 0; i < clmns; i++) {
+            if (maxValue < arr[startRow][i]) {
+                maxValue = arr[startRow][i];
+                maxX = i;
+            }
+        }
+        return {maxX, startRow};
     }
+
+    int middleRow = (startRow + endRow) / 2;
+
+    int maxValue = -1;
+    int maxX = -1;
     for (int i = 0; i < clmns; i++) {
-        if (arr[middleRow][i] > tmpMaxValue) {
-            tmpMaxValue = arr[middleRow][i];
-            maxCoorX = middleRow;
-            maxCoorY = i;
+        if (maxValue < arr[middleRow][i]) {
+            maxValue = arr[middleRow][i];
+            maxX = i;
         }
     }
-    std::cout << tmpMaxValue << "<- maks wartosc z rzedu: " << middleRow << std::endl;
-    if (middleRow + 1 < rowsAmount && middleRow - 1 >= 0) {
-        if (arr[middleRow + 1][maxCoorY] >= tmpMaxValue) {
-            int newStartRows = middleRow + 1;
-            findSpot(arr, maxCoorX, maxCoorY, newStartRows, endRow, clmns, rowsAmount);
-        }
-        else if (arr[middleRow - 1][maxCoorY] >= tmpMaxValue) {
-            findSpot(arr, maxCoorX, maxCoorY, 0, middleRow, clmns, rowsAmount);
-        }
+    if (middleRow > 0 && arr[middleRow - 1][maxX] >= maxValue) {
+        return findSpot(arr, startRow, middleRow - 1, clmns);
     }
-
-}
-
-void displayArray(int** arr, int rows, int cols) {
-    for (int i = 0; i < rows; ++i) {
-        for (int j = 0; j < cols; ++j) {
-            std::cout << arr[i][j] << " ";
-        }
-        std::cout << std::endl;
+    if (middleRow < endRow && arr[middleRow + 1][maxX] >= maxValue) {
+        return findSpot(arr, middleRow + 1, endRow, clmns);
     }
+    return {maxX, middleRow};
 }
 
 int main() {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
+    int rows;
+    int clmns;
+    std::cin >> rows >> clmns;
 
-    int i, j;
-    std::cin >> i >> j;
-    int** dynamicArray = new int *[i];
-    for (int y = 0; y < i; ++y) {
-        dynamicArray[y] = new int[j];
+    int** dynamicArray = new int *[rows];
+    for (int i = 0; i < rows; ++i) {
+        dynamicArray[i] = new int[clmns];
     }
 
-    for (int x = 0; x < i; ++x) {
-        for (int y = 0; y < j; ++y) {
-            dynamicArray[x][y] = x * j + y;
+    for (int y = 0; y < rows; y++) {
+        for (int x = 0; x < clmns; x++) {
+            dynamicArray[y][x] = (clmns - 1 - x) * rows + y;
         }
     }
-    displayArray(dynamicArray, i, j);
 
-    std::pair<int, int> result = findSpot(dynamicArray, 0, 0, 0, i, j);
-    std::cout << result.first << " " << result.second;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < clmns; j++) {
+            std::cout << dynamicArray[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
 
-    for (int x = 0; x < i; ++x) {
-        delete[] dynamicArray[x];
+    std::pair<int, int> result = findSpot(dynamicArray, 0, rows - 1, clmns);
+
+    std::cout << "Peak found at position: (" << result.first << ", " << result.second << ")" << std::endl;
+
+    for (int i = 0; i < rows; ++i) {
+        delete[] dynamicArray[i];
     }
     delete[] dynamicArray;
+
     return 0;
 }
