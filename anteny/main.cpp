@@ -1,13 +1,13 @@
 #include <iostream>
 
-std::pair<int, int> findSpot(int** arr, int startRow, int endRow, int clmns) {
+std::pair<int, int> findSpot(int startRow, int endRow, int clmns, double (*P)(int, int)) {
     if (startRow == endRow) {
-
-        int maxValue = -1;
+        double maxValue = -1;
         int maxX = -1;
         for (int i = 0; i < clmns; i++) {
-            if (maxValue < arr[startRow][i]) {
-                maxValue = arr[startRow][i];
+            double height = P(startRow, i);
+            if (maxValue < height) {
+                maxValue = height;
                 maxX = i;
             }
         }
@@ -15,55 +15,34 @@ std::pair<int, int> findSpot(int** arr, int startRow, int endRow, int clmns) {
     }
 
     int middleRow = (startRow + endRow) / 2;
-
-    int maxValue = -1;
+    double maxValue = -1;
     int maxX = -1;
     for (int i = 0; i < clmns; i++) {
-        if (maxValue < arr[middleRow][i]) {
-            maxValue = arr[middleRow][i];
+        double height = P(middleRow, i);
+        if (maxValue < height) {
+            maxValue = height;
             maxX = i;
         }
     }
-    if (middleRow > 0 && arr[middleRow - 1][maxX] >= maxValue) {
-        return findSpot(arr, startRow, middleRow - 1, clmns);
+    if ( P(middleRow - 1, maxX) > maxValue) {
+        return findSpot(startRow, middleRow - 1, clmns, P);
     }
-    if (middleRow < endRow && arr[middleRow + 1][maxX] >= maxValue) {
-        return findSpot(arr, middleRow + 1, endRow, clmns);
+    if ( P(middleRow + 1, maxX) > maxValue) {
+        return findSpot(middleRow + 1, endRow, clmns, P);
     }
     return {maxX, middleRow};
 }
 
 int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
     int rows;
     int clmns;
     std::cin >> rows >> clmns;
 
-    int** dynamicArray = new int *[rows];
-    for (int i = 0; i < rows; ++i) {
-        dynamicArray[i] = new int[clmns];
-    }
-
-    for (int y = 0; y < rows; y++) {
-        for (int x = 0; x < clmns; x++) {
-            dynamicArray[y][x] = (clmns - 1 - x) * rows + y;
-        }
-    }
-
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < clmns; j++) {
-            std::cout << dynamicArray[i][j] << " ";
-        }
-        std::cout << std::endl;
-    }
-
-    std::pair<int, int> result = findSpot(dynamicArray, 0, rows - 1, clmns);
-
-    std::cout << "Peak found at position: (" << result.first << ", " << result.second << ")" << std::endl;
-
-    for (int i = 0; i < rows; ++i) {
-        delete[] dynamicArray[i];
-    }
-    delete[] dynamicArray;
-
+    std::pair<int, int> result = findSpot(1, rows - 1, clmns, P);
+    int peakHeight = P(result.second, result.first);
+    std::cout << peakHeight;
     return 0;
 }

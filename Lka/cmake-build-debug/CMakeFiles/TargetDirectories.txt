@@ -1,0 +1,3 @@
+/Users/kamilgolawski/Nauka/Programowanie/Algosy/Lka/cmake-build-debug/CMakeFiles/Lka.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algosy/Lka/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algosy/Lka/cmake-build-debug/CMakeFiles/rebuild_cache.dir
