@@ -1,5 +1,20 @@
 #include <iostream>
 
+
+struct Box {
+    int index;
+    int sumValue;
+    int* values;
+    bool printed;
+
+    Box(int index, int sumValue, int* values, bool printed)
+        : index(index), sumValue(sumValue), values(values), printed(printed) {
+    }
+
+    Box() {
+    }
+};
+
 int main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
@@ -8,76 +23,57 @@ int main() {
     int packagesAmount;
     int bottlesAmount;
     int maxCapacity;
-    float tmpValue;
+    float tmpValueToSum;
+    int displayedAmount = 0;
 
-    int arrToSort[1001];
-    int tmpIndex;
-    int sortedArrSum;
     std::cin >> packagesAmount >> bottlesAmount >> maxCapacity;
+    int sizeOfArrToSort = 1000 * bottlesAmount;
 
-    // Array to store the boxes
-    int** arr = new int *[packagesAmount];
-    for (int i = 0; i < packagesAmount; ++i) {
-        arr[i] = new int[bottlesAmount];
+    Box* arrOfBoxes = new Box[packagesAmount];
+
+    int* arrToSort = new int[sizeOfArrToSort];
+    for (int i = 0; i < sizeOfArrToSort; i++) {
+        arrToSort[i] = 0;
     }
-
-    // Array to store the fill percentages
-    float* fillPercentage = new float[packagesAmount];
-
-    // Read the boxes
     for (int i = 0; i < packagesAmount; i++) {
-        float total = 0;
+        int* arrOfValues = new int[bottlesAmount];
+        int tmpValueTotal = 0;
         for (int j = 0; j < bottlesAmount; j++) {
-            std::cin >> tmpValue;
-            tmpValue *= 1000;
-            arr[i][j] = tmpValue;
-            total += tmpValue;
+            std::cin >> tmpValueToSum;
+            arrOfValues[j] = 1000 * tmpValueToSum;
+            tmpValueTotal += arrOfValues[j];
         }
-        fillPercentage[i] = total / (float)(bottlesAmount * maxCapacity);
+        arrOfBoxes[i] = Box(i, tmpValueTotal, arrOfValues, false);
     }
+    for (int i = 0; i < packagesAmount; i++) {
+        arrToSort[arrOfBoxes[i].sumValue]++;
+    }
+    for (int i = arrOfBoxes[0].sumValue; i >= 0 && displayedAmount < maxCapacity; i--) {
+        while (arrToSort[i]) {
+            for (int j = 0; j < packagesAmount; j++) {
+                if (arrOfBoxes[j].sumValue == i) {
+                    for (int x = 0; x < bottlesAmount; x++) {
+                        std::cout << (float)arrOfBoxes[j].values[x] / 1000 << " ";
 
-    // Sort the boxes based on the fill percentages
-    for (int i = 0; i < packagesAmount - 1; i++) {
-        for (int j = i + 1; j < packagesAmount; j++) {
-            if (fillPercentage[i] < fillPercentage[j]) {
-                // Swap fillPercentage[i] and fillPercentage[j]
-                float temp = fillPercentage[i];
-                fillPercentage[i] = fillPercentage[j];
-                fillPercentage[j] = temp;
-
-                // Also swap the corresponding boxes
-                int* tempBox = arr[i];
-                arr[i] = arr[j];
-                arr[j] = tempBox;
+                    }
+                    std::cout << std::endl;
+                    arrOfBoxes[j].sumValue = -1;
+                }
             }
+            arrToSort[i]--;
         }
     }
-
-    // Print the boxes
-    for (int i = 0; i < maxCapacity; i++) {
-        for( int j = 0; j < bottlesAmount; j++) {
-            std::cout << arr[i][j] / 1000.0 << " ";
-        }
-        std::cout << std::endl;
-    }
-
-    // Deallocate memory
-    for (int i = 0; i < packagesAmount; ++i) {
-        delete[] arr[i];
-    }
-    delete[] arr;
-    delete[] fillPercentage;
+    delete[] arrToSort;
+    delete[] arrOfBoxes;
+    /*
+    6 5 3
+    1 0 0.6 0.8 1
+    1 1 1 1 1
+    0 0 0 0 0.1
+    0.5 0.5 0.5 0.5 0
+    0.8 0.7 0.6 0.5 0.4
+    0.4 0.5 0.6 0.7 0.8
+    */
 
     return 0;
 }
-
-
-/*
-6 5 3
-1 0 0.6 0.8 1
-1 1 1 1 1
-0 0 0 0 0.1
-0.5 0.5 0.5 0.5 0
-0.8 0.7 0.6 0.5 0.4
-0.4 0.5 0.6 0.7 0.8
-*/

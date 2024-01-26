@@ -19,7 +19,7 @@ int findMedian(std::vector<Place> arr, int startIndex, int endIndex) {
     if(amountOfNeededArrs > 0 && smallArrSize == 0) {
         for(int i = 0; i < amountOfNeededArrs; i++) {
             startIndex += (4 * i);
-            endIndex += (4 * i); 
+            endIndex += (4 * i);
         }
     }
     if(amountOfNeededArrs > 0 && smallArrSize != 0) {
