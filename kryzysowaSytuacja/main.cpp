@@ -48,21 +48,25 @@ int main() {
     for (int i = 0; i < packagesAmount; i++) {
         arrToSort[arrOfBoxes[i].sumValue]++;
     }
-    for (int i = arrOfBoxes[0].sumValue; i >= 0 && displayedAmount < maxCapacity; i--) {
-        while (arrToSort[i]) {
+    for (int i = sizeOfArrToSort; i >= 0; i--) {
+        while (arrToSort[i] > 0 && maxCapacity > 0) {
             for (int j = 0; j < packagesAmount; j++) {
                 if (arrOfBoxes[j].sumValue == i) {
                     for (int x = 0; x < bottlesAmount; x++) {
                         std::cout << (float)arrOfBoxes[j].values[x] / 1000 << " ";
-
                     }
                     std::cout << std::endl;
                     arrOfBoxes[j].sumValue = -1;
+                    maxCapacity--;
+
+                    std::cout << maxCapacity << std::endl;
                 }
             }
             arrToSort[i]--;
         }
     }
+
+
     delete[] arrToSort;
     delete[] arrOfBoxes;
     /*
