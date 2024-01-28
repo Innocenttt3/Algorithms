@@ -1,19 +1,43 @@
 #include <iostream>
 
-
 struct Box {
     int index;
     int sumValue;
     int* values;
-    bool printed;
 
-    Box(int index, int sumValue, int* values, bool printed)
-        : index(index), sumValue(sumValue), values(values), printed(printed) {
-    }
+    Box(int index, int sumValue, int* values)
+        : index(index), sumValue(sumValue), values(values) {}
 
-    Box() {
-    }
+    Box() {}
 };
+
+void countSort(Box* inputArray, int N) {
+
+    int maxSumValue = 0;
+    for (int i = 0; i < N; ++i)
+        maxSumValue = std::max(maxSumValue, inputArray[i].sumValue);
+
+    int* countArray = new int[maxSumValue + 1]{0};
+
+    for (int i = 0; i < N; ++i)
+        countArray[inputArray[i].sumValue]++;
+
+    for (int i = maxSumValue - 1; i >= 0; --i)
+        countArray[i] += countArray[i + 1];
+
+    Box* outputArray = new Box[N];
+
+    for (int i = N - 1; i >= 0; --i) {
+        int pos = countArray[inputArray[i].sumValue]--;
+        outputArray[pos - 1] = inputArray[i];
+    }
+
+    for (int i = 0; i < N; ++i)
+        inputArray[i] = outputArray[i];
+
+    delete[] countArray;
+    delete[] outputArray;
+}
 
 int main() {
     std::ios_base::sync_with_stdio(false);
@@ -23,18 +47,12 @@ int main() {
     int packagesAmount;
     int bottlesAmount;
     int maxCapacity;
-    float tmpValueToSum;
-    int displayedAmount = 0;
+    double tmpValueToSum;
 
     std::cin >> packagesAmount >> bottlesAmount >> maxCapacity;
-    int sizeOfArrToSort = 1000 * bottlesAmount;
 
     Box* arrOfBoxes = new Box[packagesAmount];
 
-    int* arrToSort = new int[sizeOfArrToSort];
-    for (int i = 0; i < sizeOfArrToSort; i++) {
-        arrToSort[i] = 0;
-    }
     for (int i = 0; i < packagesAmount; i++) {
         int* arrOfValues = new int[bottlesAmount];
         int tmpValueTotal = 0;
@@ -43,41 +61,18 @@ int main() {
             arrOfValues[j] = 1000 * tmpValueToSum;
             tmpValueTotal += arrOfValues[j];
         }
-        arrOfBoxes[i] = Box(i, tmpValueTotal, arrOfValues, false);
+        arrOfBoxes[i] = Box(i, tmpValueTotal, arrOfValues);
     }
-    for (int i = 0; i < packagesAmount; i++) {
-        arrToSort[arrOfBoxes[i].sumValue]++;
-    }
-    for (int i = sizeOfArrToSort; i >= 0; i--) {
-        while (arrToSort[i] > 0 && maxCapacity > 0) {
-            for (int j = 0; j < packagesAmount; j++) {
-                if (arrOfBoxes[j].sumValue == i) {
-                    for (int x = 0; x < bottlesAmount; x++) {
-                        std::cout << (float)arrOfBoxes[j].values[x] / 1000 << " ";
-                    }
-                    std::cout << std::endl;
-                    arrOfBoxes[j].sumValue = -1;
-                    maxCapacity--;
 
-                    std::cout << maxCapacity << std::endl;
-                }
-            }
-            arrToSort[i]--;
+    countSort(arrOfBoxes, packagesAmount);
+
+    for(int i = 0; i < maxCapacity; i++) {
+        for(int j = 0; j < bottlesAmount; j++) {
+            std::cout << (double)arrOfBoxes[i].values[j] / 1000  << " ";
         }
+        std::cout << std::endl;
     }
 
-
-    delete[] arrToSort;
     delete[] arrOfBoxes;
-    /*
-    6 5 3
-    1 0 0.6 0.8 1
-    1 1 1 1 1
-    0 0 0 0 0.1
-    0.5 0.5 0.5 0.5 0
-    0.8 0.7 0.6 0.5 0.4
-    0.4 0.5 0.6 0.7 0.8
-    */
-
     return 0;
 }

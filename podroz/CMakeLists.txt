@@ -3,4 +3,5 @@ project(podroz)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(podroz main.cpp)
+add_executable(podroz main.cpp
+        main.cpp)
