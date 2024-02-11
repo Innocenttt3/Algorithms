@@ -1,25 +1,3 @@
 # ninja log v5
-458	494	1706447020977692840	kryzysowaSytuacja	284877006fe934d0
-15	458	1706447020941025630	CMakeFiles/kryzysowaSytuacja.dir/main.cpp.o	c7d523d1e3fc59cf
-4	441	1706447045082853672	CMakeFiles/kryzysowaSytuacja.dir/main.cpp.o	c7d523d1e3fc59cf
-441	476	1706447045118921845	kryzysowaSytuacja	284877006fe934d0
-4	494	1706447119700336097	CMakeFiles/kryzysowaSytuacja.dir/main.cpp.o	c7d523d1e3fc59cf
-494	534	1706447119741386352	kryzysowaSytuacja	284877006fe934d0
-4	448	1706447139599929054	CMakeFiles/kryzysowaSytuacja.dir/main.cpp.o	c7d523d1e3fc59cf
-448	486	1706447139639332466	kryzysowaSytuacja	284877006fe934d0
-4	479	1706447164902236159	CMakeFiles/kryzysowaSytuacja.dir/main.cpp.o	c7d523d1e3fc59cf
-479	516	1706447164940708355	kryzysowaSytuacja	284877006fe934d0
-3	751	1706447392962276072	CMakeFiles/kryzysowaSytuacja.dir/main.cpp.o	c7d523d1e3fc59cf
-751	913	1706447393125778651	kryzysowaSytuacja	284877006fe934d0
-4	748	1706448327346515182	CMakeFiles/kryzysowaSytuacja.dir/main.cpp.o	c7d523d1e3fc59cf
-748	903	1706448327502849786	kryzysowaSytuacja	284877006fe934d0
-4	433	1706448438666214321	CMakeFiles/kryzysowaSytuacja.dir/main.cpp.o	c7d523d1e3fc59cf
-433	471	1706448438705032175	kryzysowaSytuacja	284877006fe934d0
-3	734	1706448503702351332	CMakeFiles/kryzysowaSytuacja.dir/main.cpp.o	c7d523d1e3fc59cf
-734	888	1706448503857118592	kryzysowaSytuacja	284877006fe934d0
-4	437	1706448543709991935	CMakeFiles/kryzysowaSytuacja.dir/main.cpp.o	c7d523d1e3fc59cf
-437	474	1706448543747778298	kryzysowaSytuacja	284877006fe934d0
-4	468	1706448580065898965	CMakeFiles/kryzysowaSytuacja.dir/main.cpp.o	c7d523d1e3fc59cf
-469	508	1706448580106026729	kryzysowaSytuacja	284877006fe934d0
-4	381	1706448950269265029	CMakeFiles/kryzysowaSytuacja.dir/main.cpp.o	c7d523d1e3fc59cf
 381	417	1706448950306078399	kryzysowaSytuacja	284877006fe934d0
+4	381	1706448950269265029	CMakeFiles/kryzysowaSytuacja.dir/main.cpp.o	c7d523d1e3fc59cf

@@ -88,7 +88,7 @@ CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
 CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=/Users/kamilgolawski/Nauka/Programowanie/Algosy/podroz/cmake-build-debug/CMakeFiles/pkgRedirects
 
 //Path to a program.
-CMAKE_INSTALL_NAME_TOOL:FILEPATH=/Users/kamilgolawski/anaconda3/bin/install_name_tool
+CMAKE_INSTALL_NAME_TOOL:FILEPATH=/usr/bin/install_name_tool
 
 //Install path prefix, prepended onto install directories.
 CMAKE_INSTALL_PREFIX:PATH=/usr/local
@@ -236,9 +236,9 @@ CMAKE_CACHEFILE_DIR:INTERNAL=/Users/kamilgolawski/Nauka/Programowanie/Algosy/pod
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=3
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=27
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=28
 //Patch version of cmake used to create the current loaded cache
-CMAKE_CACHE_PATCH_VERSION:INTERNAL=8
+CMAKE_CACHE_PATCH_VERSION:INTERNAL=1
 //Path to CMake executable.
 CMAKE_COMMAND:INTERNAL=/Users/kamilgolawski/Applications/CLion Nova.app/Contents/bin/cmake/mac/aarch64/bin/cmake
 //Path to cpack program executable.
@@ -327,7 +327,7 @@ CMAKE_RANLIB-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_READELF
 CMAKE_READELF-ADVANCED:INTERNAL=1
 //Path to CMake installation.
-CMAKE_ROOT:INTERNAL=/Users/kamilgolawski/Applications/CLion Nova.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27
+CMAKE_ROOT:INTERNAL=/Users/kamilgolawski/Applications/CLion Nova.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.28
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS
 CMAKE_SHARED_LINKER_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_DEBUG
