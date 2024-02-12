@@ -1,0 +1,3 @@
+/Users/kamilgolawski/Nauka/Programowanie/Algosy/frogSolution/cmake-build-debug/CMakeFiles/frogSolution.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algosy/frogSolution/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algosy/frogSolution/cmake-build-debug/CMakeFiles/rebuild_cache.dir
