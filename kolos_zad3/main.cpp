@@ -1,30 +1,38 @@
 #include <iostream>
 
+
 struct Command {
-    unsigned long priority;
+    int priority;
     std::string text;
-    unsigned long index;
+    int index;
+
+    Command(int priority, std::string text, int index) {
+        this->priority = priority;
+        this->text = std::move(text);
+        this->index = index;
+    }
 };
 
 class Heap {
+    Command** heap;
+    unsigned long long capacity;
+    int size;
 
-    Command *heap;
-    unsigned long capacity;
-    unsigned long size;
+    int getParent(int index) { return (index - 1) / 2; }
 
-    unsigned long getParent(unsigned long index) { return (index - 1) / 2; }
+    int getRight(int index) { return 2 * index + 2; }
 
-    unsigned long getRight(unsigned long index) { return 2 * index + 2; }
+    int getLeft(int index) { return 2 * index + 1; }
 
-    unsigned long getLeft(unsigned long index) { return 2 * index + 1; }
-
-    void heapifyDown(unsigned long index) {
-        unsigned long l = getLeft(index);
-        unsigned long r = getRight(index);
-        unsigned long largest = index;
-        if (l < size && (heap[l].priority < heap[largest].priority || (heap[l].priority == heap[largest].priority && heap[l].index < heap[largest].index )))
+    void heapifyDown(int index) {
+        int l = getLeft(index);
+        int r = getRight(index);
+        int largest = index;
+        if (l < size && (heap[l]->priority < heap[largest]->priority || (
+                             heap[l]->priority == heap[largest]->priority && heap[l]->index < heap[largest]->index)))
             largest = l;
-        if (r < size && (heap[r].priority < heap[largest].priority || (heap[r].priority == heap[largest].priority && heap[r].index < heap[largest].index )))
+        if (r < size && (heap[r]->priority < heap[largest]->priority || (
+                             heap[r]->priority == heap[largest]->priority && heap[r]->index < heap[largest]->index)))
             largest = r;
         if (largest != index) {
             std::swap(heap[largest], heap[index]);
@@ -32,75 +40,81 @@ class Heap {
         }
     }
 
-    void heapiftyUp(unsigned long index) {
-        if(index == 0) {
+    void heapiftyUp(int index) {
+        if (index == 0) {
             return;
         }
-        unsigned long parent = getParent(index);
-        if(heap[parent].priority > heap[index].priority || (heap[parent].priority > heap[index].priority && heap[parent].index > heap[index].index)) {
+        int parent = getParent(index);
+        if (heap[parent]->priority > heap[index]->priority || (
+                heap[parent]->priority > heap[index]->priority && heap[parent]->index > heap[index]->index)) {
             std::swap(heap[parent], heap[index]);
             heapiftyUp(parent);
         }
     }
+
 public:
-    Heap(unsigned long capacity) {
-        heap = new Command[capacity];
+    Heap(unsigned long long capacity) {
+        heap = new Command *[capacity];
         this->capacity = capacity;
         size = 0;
     }
-    void insert(Command& newValue) {
+
+    void insert(int index, int priority, std::string text) {
         if (size == capacity) {
-            return;
+            capacity *= 2;
+            Command** temp = heap;
+            heap = new Command*[capacity];
+
+            for (int i = 0; i < capacity / 2; i++) {
+                heap[i] = temp[i];
+            }
         }
-        heap[size] = newValue;
+        heap[size] = new Command(priority, std::move(text), index);
         heapiftyUp(size);
         size++;
     }
 
-    void pop() {
-        if(size <= 0) {
-            return;
+    std::string pop() {
+        if (size <= 0) {
+            return "BRAK";
         }
         size--;
-        heap[0] = heap[size];
+        std::string result = std::move(heap[0]->text);
+        delete heap[0];
+        heap[0] = new Command(*heap[size]);
+        delete heap[size];
         heapifyDown(0);
+        return result;
     }
 
     ~Heap() {
-
-        delete[] heap;
-    }
-
-    std::string top() {
-        if(size == 0) {
-            return "BRAK";
+        for (int i = 0; i < size; i++) {
+            delete heap[i];
         }
-        return heap[0].text;
+        delete[] heap;
     }
 };
 
 int main() {
-
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    unsigned long amountOfOperations;
-    unsigned long typeOfOperation;
-    std::string instruction;
+    unsigned long long amountOfOperations;
+    short typeOfOperation;
+    int priority;
+    std::string text;
 
     std::cin >> amountOfOperations;
-    Heap heap(amountOfOperations);
-    Command tmp;
-    for (long i = 0; i < amountOfOperations; i++) {
+    Heap heap(amountOfOperations / 4);
+    for (unsigned long long i = 0; i < amountOfOperations; i++) {
         std::cin >> typeOfOperation;
-        if(typeOfOperation == 1) {
-            tmp.index = i;
-            std::cin >> tmp.priority >> tmp.text;
-            heap.insert(tmp);
-        } else if(typeOfOperation == 2) {
-            std::cout << heap.top() << " ";
-            heap.pop();
+        if (typeOfOperation == 1) {
+            std::cin >> priority >> text;
+            heap.insert(i, priority, text);
+        }
+        else if (typeOfOperation == 2) {
+            std::cout << heap.pop() << " ";
         }
     }
 
