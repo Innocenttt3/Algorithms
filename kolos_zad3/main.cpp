@@ -1,29 +1,49 @@
 #include <iostream>
 
 struct Command {
-    int priority;
+    unsigned long priority;
     std::string text;
+    unsigned long index;
 };
 
 class Heap {
 
     Command *heap;
-    long capacity;
-    int size;
+    unsigned long capacity;
+    unsigned long size;
 
-    int getParent(int index) { return (index - 1) / 2; }
+    unsigned long getParent(unsigned long index) { return (index - 1) / 2; }
 
-    int getRight(int index) { return 2 * index + 2; }
+    unsigned long getRight(unsigned long index) { return 2 * index + 2; }
 
-    int getLeft(int index) { return 2 * index + 1; }
+    unsigned long getLeft(unsigned long index) { return 2 * index + 1; }
 
-    void swap(Command *x, Command *y) {
-        Command tmp = *x;
-        *x = *y;
-        *y = tmp;
+    void heapifyDown(unsigned long index) {
+        unsigned long l = getLeft(index);
+        unsigned long r = getRight(index);
+        unsigned long largest = index;
+        if (l < size && (heap[l].priority < heap[largest].priority || (heap[l].priority == heap[largest].priority && heap[l].index < heap[largest].index )))
+            largest = l;
+        if (r < size && (heap[r].priority < heap[largest].priority || (heap[r].priority == heap[largest].priority && heap[r].index < heap[largest].index )))
+            largest = r;
+        if (largest != index) {
+            std::swap(heap[largest], heap[index]);
+            heapifyDown(largest);
+        }
+    }
+
+    void heapiftyUp(unsigned long index) {
+        if(index == 0) {
+            return;
+        }
+        unsigned long parent = getParent(index);
+        if(heap[parent].priority > heap[index].priority || (heap[parent].priority > heap[index].priority && heap[parent].index > heap[index].index)) {
+            std::swap(heap[parent], heap[index]);
+            heapiftyUp(parent);
+        }
     }
 public:
-    Heap(long capacity) {
+    Heap(unsigned long capacity) {
         heap = new Command[capacity];
         this->capacity = capacity;
         size = 0;
@@ -32,47 +52,30 @@ public:
         if (size == capacity) {
             return;
         }
+        heap[size] = newValue;
+        heapiftyUp(size);
         size++;
-        int i = size - 1;
-        heap[i] = newValue;
+    }
 
-        while (i != 0 && heap[getParent(i)].priority > heap[i].priority) {
-            swap(&heap[getParent(i)], &heap[i]);
-            i = getParent(i);
-        }
-    }
-    void heapifyDown(int index) {
-        int l = getLeft(index);
-        int r = getRight(index);
-        int largest = index;
-        if (l < size && heap[l].priority < heap[index].priority)
-            largest = l;
-        if (r < size && heap[r].priority < heap[largest].priority)
-            largest = r;
-        if (largest != index) {
-            swap(&heap[index], &heap[largest]);
-            heapifyDown(largest);
-        }
-    }
-    Command extractMax() {
+    void pop() {
         if(size <= 0) {
-            std::cout << "BRAK";
+            return;
         }
-        if (size == 1)
-        {
-            size--;
-            return heap[0];
-        }
-
-        Command root = heap[0];
-        heap[0] = heap[size - 1];
         size--;
+        heap[0] = heap[size];
         heapifyDown(0);
-
-        return root;
     }
+
     ~Heap() {
+
         delete[] heap;
+    }
+
+    std::string top() {
+        if(size == 0) {
+            return "BRAK";
+        }
+        return heap[0].text;
     }
 };
 
@@ -82,21 +85,22 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    long amountOfOperations;
-    int typeOfOperation;
+    unsigned long amountOfOperations;
+    unsigned long typeOfOperation;
     std::string instruction;
 
     std::cin >> amountOfOperations;
     Heap heap(amountOfOperations);
+    Command tmp;
     for (long i = 0; i < amountOfOperations; i++) {
         std::cin >> typeOfOperation;
         if(typeOfOperation == 1) {
-            Command tmp;
+            tmp.index = i;
             std::cin >> tmp.priority >> tmp.text;
             heap.insert(tmp);
         } else if(typeOfOperation == 2) {
-            Command result = heap.extractMax();
-            std::cout << result.text << std::endl;
+            std::cout << heap.top() << " ";
+            heap.pop();
         }
     }
 

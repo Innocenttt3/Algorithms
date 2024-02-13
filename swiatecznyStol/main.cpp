@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+
 struct Dish {
     std::string name;
     int kcal;

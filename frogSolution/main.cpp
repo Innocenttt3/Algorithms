@@ -14,28 +14,28 @@ struct Message {
 
 struct Heap {
     Message** heap;
-    int numberOfElements = 0;
-    int size = 0;
+    int currentSize = 0;
+    int maxSize = 0;
 
     Heap(unsigned long long n) {
         this->heap = new Message*[n];
-        this->size = n;
+        this->maxSize = n;
     }
 
     void push(int priority, string content) {
-        if (numberOfElements == size) {
-            size *= 2;
+        if (currentSize == maxSize) {
+            maxSize *= 2;
             Message** temp = heap;
-            heap = new Message*[size];
+            heap = new Message*[maxSize];
 
-            for (int i = 0; i < size / 2; i++) {
+            for (int i = 0; i < maxSize / 2; i++) {
                 heap[i] = temp[i];
             }
         }
 
-        heap[numberOfElements++] = new Message(priority, content);
+        heap[currentSize++] = new Message(priority, content);
 
-        int k = numberOfElements - 1;
+        int k = currentSize - 1;
         while ((k - 1) / 2 >= 0) {
             if (heap[(k - 1) / 2]->priority > heap[k]->priority) {
                 swap(heap[(k - 1) / 2], heap[k]);
@@ -47,18 +47,18 @@ struct Heap {
     }
 
     string pop() {
-        if (numberOfElements > 0) {
+        if (currentSize > 0) {
             string res = heap[0]->content;
             delete heap[0];
 
-            heap[0] = heap[--numberOfElements];
+            heap[0] = heap[--currentSize];
 
             int k = 0;
-            while (2*k + 1 < numberOfElements) {
+            while (2*k + 1 < currentSize) {
                 int left, right;
                 left = heap[2*k + 1]->priority;
 
-                if (2*k + 2 < numberOfElements) {
+                if (2*k + 2 < currentSize) {
                     right = heap[2*k + 2]->priority;
                 } else {
                     right = -1;
@@ -84,7 +84,7 @@ struct Heap {
     }
 
     ~Heap() {
-        for (int i = 0; i < numberOfElements; i++) {
+        for (int i = 0; i < currentSize; i++) {
             delete heap[i];
         }
 
@@ -93,7 +93,7 @@ struct Heap {
 };
 
 void print(Heap* heap) {
-    for (int i = 0; i < heap->numberOfElements; i++) {
+    for (int i = 0; i < heap->currentSize; i++) {
         cout << "k: " << i << " " << heap->heap[i]->priority << " " << heap->heap[i]->content << '\n';
     }
 }
