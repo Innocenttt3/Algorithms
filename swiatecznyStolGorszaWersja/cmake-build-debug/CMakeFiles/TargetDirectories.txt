@@ -1,0 +1,3 @@
+/Users/kamilgolawski/Nauka/Programowanie/Algosy/swiatecznyStolGorszaWersja/cmake-build-debug/CMakeFiles/swiatecznyStolGorszaWersja.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algosy/swiatecznyStolGorszaWersja/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algosy/swiatecznyStolGorszaWersja/cmake-build-debug/CMakeFiles/rebuild_cache.dir

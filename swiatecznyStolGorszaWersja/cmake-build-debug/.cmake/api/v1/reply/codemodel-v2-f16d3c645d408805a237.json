@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "swiatecznyStolGorszaWersja",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "swiatecznyStolGorszaWersja::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-swiatecznyStolGorszaWersja-Debug-4ea40d7d4aaf7eb89801.json",
+					"name" : "swiatecznyStolGorszaWersja",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/kamilgolawski/Nauka/Programowanie/Algosy/swiatecznyStolGorszaWersja/cmake-build-debug",
+		"source" : "/Users/kamilgolawski/Nauka/Programowanie/Algosy/swiatecznyStolGorszaWersja"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}
