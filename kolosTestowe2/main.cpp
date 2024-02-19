@@ -1,86 +1,90 @@
 #include <deque>
 #include <iostream>
 #include <climits>
+#include <queue>
 #include <vector>
 #include <string>
 
-struct Point {
-    std::vector<std::pair<int, int>> neighbours;
-    int cost;
-    int totalCost;
-    bool visited;
-    bool desired;
+using namespace std;
 
-    Point() {
-        visited = false;
-        desired = false;
-        totalCost = INT_MAX;
+struct Point {
+    vector<pair<int, int>> neighbours;
+    int cost = INT_MAX;
+    int totalCost = INT_MAX;
+    bool visited = false;
+    bool desired;
+};
+
+struct ComparePoints {
+    bool operator()(Point* left, Point* right) {
+        return left->totalCost > right->totalCost;
     }
 };
 
-void BFS(int startIndex, std::vector<Point>&points) {
-    std::deque<Point *> pointsQueue;
+void BFS(int startIndex, vector<Point>& points) {
+    priority_queue<Point *, vector<Point *>, ComparePoints> pointsQueue;
     points[startIndex].visited = true;
     points[startIndex].totalCost = 0;
-    pointsQueue.push_back(&points[startIndex]);
+    pointsQueue.push(&points[startIndex]);
     while (!pointsQueue.empty()) {
-        Point* currentPoint = pointsQueue.front();
-        pointsQueue.pop_front();
+        Point* currentPoint = pointsQueue.top();
+        pointsQueue.pop();
         currentPoint->visited = true;
-        for (auto neighbour: currentPoint->neighbours) {
+        for (auto neighbour : currentPoint->neighbours) {
             if (!points[neighbour.first].visited) {
-                pointsQueue.push_back(&points[neighbour.first]);
-            }
-            if (points[neighbour.first].totalCost == INT_MAX || points[neighbour.first].totalCost > currentPoint->
-                totalCost + neighbour.second + points[neighbour.first].cost) {
-                points[neighbour.first].totalCost =
-                        currentPoint->totalCost + neighbour.second + points[neighbour.first].cost;
+                int value = currentPoint->totalCost + neighbour.second + points[neighbour.first].cost;
+                if (value < points[neighbour.first].totalCost) {
+                    points[neighbour.first].totalCost = value;
+                    pointsQueue.push(&points[neighbour.first]);
+                }
             }
         }
     }
 }
 
-void printResults(std::vector<Point>&points, std::vector<int>&index) {
-    for(auto& tmpIndex: index) {
-        std::string tmp = points[tmpIndex].totalCost == INT_MAX? "NIE": std::to_string(points[tmpIndex].totalCost);
-        std::cout << tmp << std::endl;
+void printResults(vector<Point>& points, vector<int>& index) {
+    for (auto& tmpIndex : index) {
+        string tmp = points[tmpIndex].totalCost == INT_MAX ? "NIE" : to_string(points[tmpIndex].totalCost);
+        cout << tmp << endl;
     }
-
 }
 
 int main() {
-    std::ios_base::sync_with_stdio(false);
-    std::cout.tie(nullptr);
-    std::cin.tie(nullptr);
+    ios_base::sync_with_stdio(false);
+    cout.tie(nullptr);
+    cin.tie(nullptr);
 
-    int amountOfVertices;
-    int amountOfEdges;
+    int amountOfVertices, amountOfEdges;
+    cin >> amountOfVertices >> amountOfEdges;
+    vector<Point> points(amountOfVertices);
+
     int tmpStart;
     int tmpDestination;
     int distance;
     int entryCost;
     int amountOfFinalDestinations;
     int startPoint;
-    std::cin >> amountOfVertices >> amountOfEdges;
-    std::vector<Point> points(amountOfVertices);
+
     for (int i = 0; i < amountOfEdges; i++) {
-        std::cin >> tmpStart >> tmpDestination >> distance;
-        points[tmpStart].neighbours.push_back(std::make_pair(tmpDestination, distance));
+        cin >> tmpStart >> tmpDestination >> distance;
+        if (tmpStart < amountOfVertices && tmpDestination < amountOfVertices) {
+            points[tmpStart].neighbours.emplace_back(tmpDestination, distance);
+        }
     }
     for (int i = 0; i < amountOfVertices; i++) {
-        std::cin >> entryCost;
+        cin >> entryCost;
         points[i].cost = entryCost;
     }
     int index;
-    std::cin >> amountOfFinalDestinations;
-    std::vector<int> desiredIndexes;
+    cin >> amountOfFinalDestinations;
+    vector<int> desiredIndexes;
     for (int i = 0; i < amountOfFinalDestinations; i++) {
-        std::cin >> index;
-        if(index < amountOfVertices) {
+        cin >> index;
+        if (index < amountOfVertices) {
             desiredIndexes.push_back(index);
         }
     }
-    std::cin >> startPoint;
+    cin >> startPoint;
     BFS(startPoint, points);
     printResults(points, desiredIndexes);
     return 0;
