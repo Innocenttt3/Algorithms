@@ -1,61 +1,65 @@
 #include <iostream>
-#include <vector>
 #include <string>
+
 struct Dish {
     std::string name;
     long long kcal;
 };
 
-std::vector<Dish> countSortMOD(std::vector<Dish>& inputArray) {
-    int N = inputArray.size();
-
+void countSortMOD(Dish inputArray[], int size) {
     long long M = 0;
-    for (int i = 0; i < N; i++)
-        M = std::max(M, inputArray[i].kcal % 10);
+    for (int i = 0; i < size; i++)
+        M = std::max(M, inputArray[i].kcal % size);
 
-    std::vector<int> countArray(M + 1, 0);
+    int countArray[M + 1];
+    for(int i = 0; i < M + 1; i++) {
+        countArray[i] = 0;
+    }
 
-    for (int i = 0; i < N; i++)
-        countArray[inputArray[i].kcal % 10]++;
+    for (int i = 0; i < size; i++)
+        countArray[inputArray[i].kcal % size]++;
 
     for (long long i = 1; i <= M; i++)
         countArray[i] += countArray[i - 1];
 
-    std::vector<Dish> outputArray(N);
+    Dish outputArray[size];
 
-    for (int i = N - 1; i >= 0; i--) {
-        outputArray[countArray[inputArray[i].kcal % 10] - 1] = inputArray[i];
-        countArray[inputArray[i].kcal % 10]--;
+    for (int i = size - 1; i >= 0; i--) {
+        outputArray[countArray[inputArray[i].kcal % size] - 1] = inputArray[i];
+        countArray[inputArray[i].kcal % size]--;
     }
 
-    return outputArray;
+    for (int i = 0; i < size; i++) {
+        inputArray[i] = outputArray[i];
+    }
 }
 
-std::vector<Dish> countSortDIV(std::vector<Dish>& inputArray) {
-    int N = inputArray.size();
-
+void countSortDIV(Dish inputArray[], int size) {
     long long M = 0;
-    for (int i =  0; i < N; i++) {
-        M = std::max(M, inputArray[i].kcal /  10);
+    for (int i = 0; i < size; i++)
+        M = std::max(M, inputArray[i].kcal / size);
+
+    int countArray[M + 1];
+    for(int i = 0; i < M + 1; i++) {
+        countArray[i] = 0;
     }
 
-    std::vector<int> countArray(M +  1,  0);
+    for (int i = 0; i < size; i++)
+        countArray[inputArray[i].kcal / size]++;
 
-    for (int i =  0; i < N; i++) {
-        countArray[inputArray[i].kcal /  10]++;
+    for (long long i = 1; i <= M; i++)
+        countArray[i] += countArray[i - 1];
+
+    Dish outputArray[size];
+
+    for (int i = size - 1; i >= 0; i--) {
+        outputArray[countArray[inputArray[i].kcal / size] - 1] = inputArray[i];
+        countArray[inputArray[i].kcal / size]--;
     }
 
-    for (long long i =  1; i <= M; i++) {
-        countArray[i] += countArray[i -  1];
+    for (int i = 0; i < size; i++) {
+        inputArray[i] = outputArray[i];
     }
-    std::vector<Dish> outputArray(N);
-
-    for (int i = N -  1; i >=  0; i--) {
-        outputArray[countArray[inputArray[i].kcal /  10] -  1] = inputArray[i];
-        countArray[inputArray[i].kcal /  10]--;
-    }
-
-    return outputArray;
 }
 
 int main() {
@@ -65,20 +69,20 @@ int main() {
 
     int amountOfData;
     std::cin >> amountOfData;
-    std::vector<Dish> dishes(amountOfData);
-    std::vector<Dish> result(amountOfData);
-    std::vector<Dish> result2(amountOfData);
+    Dish *dishes = new Dish[amountOfData];
 
     for (int i = 0; i < amountOfData; i++) {
         std::cin >> dishes[i].name >> dishes[i].kcal;
     }
 
-    result = countSortMOD(dishes);
-    result2 = countSortDIV(result);
+    countSortMOD(dishes, amountOfData);
+    countSortDIV(dishes, amountOfData);
 
-    for (const Dish& dish : result2) {
-        std::cout << dish.name << " ";
+    for(int i = 0; i < amountOfData; i++) {
+        std::cout << dishes[i].name << " ";
     }
+
+    delete[] dishes;
 
     return 0;
 }

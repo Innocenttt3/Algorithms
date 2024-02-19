@@ -1,0 +1,3 @@
+/Users/kamilgolawski/Nauka/Programowanie/Algosy/kolosTestowe2/cmake-build-debug/CMakeFiles/kolosTestowe2.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algosy/kolosTestowe2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/kamilgolawski/Nauka/Programowanie/Algosy/kolosTestowe2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
