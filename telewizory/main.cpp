@@ -41,7 +41,7 @@ int main() {
         }
         std::sort(tvPrograms.begin(), tvPrograms.end(), ProgramsCompare);
         for(Program tmp: tvPrograms) {
-            std::cout << tmp.startTime << " " << tmp.endTime << std::endl;
+            // std::cout << tmp.startTime << " " << tmp.endTime << std::endl;
         }
         int totalCost = 0;
         int previousEndTime = 0;
@@ -51,7 +51,7 @@ int main() {
 
             if(currStartTime >= previousEndTime) {
                 int currentUnitCost = firstMinute + ((currEndTime - currStartTime) * otherMinutes);
-                std::cout << currentUnitCost << std::endl;
+                // std::cout << currentUnitCost << std::endl;
                 totalCost += currentUnitCost;
                 previousEndTime = currEndTime;
             } else if(currStartTime < previousEndTime) {

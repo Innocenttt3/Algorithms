@@ -9,7 +9,7 @@
 					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.27"
+						"string" : "3.28"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -27,7 +27,7 @@
 					[
 						0
 					],
-					"name" : "telewizory",
+					"name" : "AI",
 					"targetIndexes" : 
 					[
 						0
@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "telewizory::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-telewizory-Debug-415084a8c938ebbe71b4.json",
-					"name" : "telewizory",
+					"id" : "AI::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-AI-Debug-f9e0a64873ea0ca2e249.json",
+					"name" : "AI",
 					"projectIndex" : 0
 				}
 			]
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/kamilgolawski/Nauka/Programowanie/Algosy/telewizory/cmake-build-debug",
-		"source" : "/Users/kamilgolawski/Nauka/Programowanie/Algosy/telewizory"
+		"build" : "/Users/kamilgolawski/Nauka/Programowanie/Algosy/AI/cmake-build-debug",
+		"source" : "/Users/kamilgolawski/Nauka/Programowanie/Algosy/AI"
 	},
 	"version" : 
 	{
